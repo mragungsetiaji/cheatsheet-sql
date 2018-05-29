@@ -124,3 +124,84 @@ Contoh:
 SELECT CAST('ABC' AS CHAR(10)) -- 'ABC       ' (padded with spaces on the right) 
 SELECT CAST('ABC' AS VARCHAR(10)) -- 'ABC' (no padding due to variable character) 
 SELECT CAST('ABCDEFGHIJKLMNOPQRSTUVWXYZ' AS CHAR(10))  -- 'ABCDEFGHIJ' (truncated to 10 characters)
+```
+
+## Sub Chapter 3.7: NCHAR and NVARCHAR
+Buat mengetahui panjangnnya variable tersebut pakai syntax berikut:
+
+Syntax:
+```sql
+NCHAR [ ( n_chars ) ] 
+NVARCHAR [ ( n_chars | MAX ) ]
+```
+
+Gunakan MAX buat string yang sangat panjang dan mungkin melebihi 8000 karakter.
+
+## Sub Chapter 3.8: UNIQUEIDENTIFIER
+16 byte GUID / UUID.
+
+```sql
+DECLARE @GUID UNIQUEIDENTIFIER = NEWID(); 
+SELECT @GUID -- 'E28B3BD9-9174-41A9-8508-899A78A33540' 
+DECLARE @bad_GUID_string VARCHAR(100) = 'E28B3BD9-9174-41A9-8508-899A78A33540_foobarbaz' 
+SELECT    
+    @bad_GUID_string,   -- 'E28B3BD9-9174-41A9-8508-899A78A33540_foobarbaz'    
+    CONVERT(UNIQUEIDENTIFIER, @bad_GUID_string) -- 'E28B3BD9-9174-41A9-8508-899A78A33540' 
+```
+
+# Chapter 4: NULL
+NULL di SQL, sebagai mana seperti programming pada umumnya, yang artinya "nggak ada". Di SQL, lebih mudah dipahami kalau "nilainya ga ada"
+
+Dan bukan berarti bernilai "empty" atau string yang hanya '' atau number 0, semua hal itu bukan berarti NULL.
+
+Ada juga yang perlu diperhatikan bahwa NULL dalam quote, seperti 'NULL', itu berarti column-nya memiliki text seperti itu, dan ini juga bukan NULL yang kita maksud.
+
+## Sub Chapter 4.1: Filtering untuk NULL dalam query
+Syntax untuk filter NULL (Misalnya, tidak adanya sebuah nilai) di WHERE cukup berbeda dibandingkan filter suatu nilai.
+
+```sql
+SELECT * FROM Karyawan WHERE ManagerId IS NULL ; 
+SELECT * FROM Karyawan WHERE ManagerId IS NOT NULL ;
+```
+
+Perlu diperhatikan bahwa NULL tidak sama dengan suatu nilai, atau bahkan untuk dirinya sendiri, dengan menggunakan equality operator = NULL atau <> NULL (atau != NULL) akan selalu return nilai dari UNKNOWN yang akan direject oleh WHERE.
+
+Filter dengan menggunakan WHERE akan skip semua baris dimana condition bernilai FALSE atau UNKNOWN dan menampilkan semua row jika condition bernilai TRUE. 
+
+## Sub Chapter 4.2: Nullable column dalam suatu table
+Ketika membuat sebuah table hal ini sangat memungkinkan untuk mendeklarasi sebuah column sebagai nullable atau non-nullable
+
+```sql
+CREATE TABLE MyTable 
+(
+    Col1 INT NOT NULL, -- non-nullable    
+    Col2 INT NULL      -- nullable 
+) ;
+```
+Secara default setiap column (kecuali column yang digunakan sebagai primary key) adalah nullable sampai kita set NOT NULL
+
+Memasukkan nilai NULL kedalam non-nullable column akan menghasilkan error.
+
+```sql
+INSERT INTO MyTable (MyCol1, MyCol2) VALUES (1, NULL) ;  -- works fine
+INSERT INTO MyTable (MyCol1, MyCol2) VALUES (NULL, 2) ;     
+    -- cannot insert        
+    -- the value NULL into column 'MyCol1', table 'MyTable'
+    -- column does not allow nulls. INSERT fails. 
+```
+
+## Sub Chapter 4.3: Update field ke NULL
+Pengaturan sebuah field kedalam NULL juga sama seperti syntax biasa.
+
+```sql
+UPDATE Karyawan SET ManagerId = NULL WHERE Id = 4
+```
+
+## Sub Chapter 4.4: Insert row dengan NULL field
+Sebagai contoh insert seorang karyawan dengan nomor telepon dan nomor manager kedalam table Karyawan:
+
+```sql
+INSERT INTO Employees    
+    (Id, NamaDepan, NamaBelakang, NomorTelepon, ManagerId, Departemend, Gaji, TanggalMasuk) 
+VALUES    
+    (5, 'Janeta', 'Doel', NULL, NULL, 2, 800, '2016-07-22') ;
