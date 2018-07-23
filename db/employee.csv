@@ -1,0 +1,21 @@
+DEPARTMENT,FIRST_NAME,LAST_NAME,YEAR,SALARY,POSITION
+IT,Olivia,Pearson,2011,3000,Trainee
+IT,Olivia,Pearson,2012,4200,Junior Developer
+IT,Olivia,Pearson,2013,4900,Junior Developer
+IT,Olivia,Pearson,2014,8100,Senior Developer
+Management,Jack,Johnson,2011,4300,Junior Project Manager
+Management,Jack,Johnson,2012,5100,Project Manager
+Management,Jack,Johnson,2013,7200,Senior Project Manager
+Management,Jack,Johnson,2014,7600,Senior Project Manager
+Management,Jack,Johnson,2015,9500,Head of Department
+IT,Harry,Taylor,2015,2700,Trainee
+Human Resources,Lily,Bennett,2013,1900,Junior HR Specialist
+Human Resources,Lily,Bennett,2014,2300,HR Specialist
+Human Resources,Lily,Bennett,2015,3650,Senior HR Specialist
+Accounting,Charlie,Johnson,2010,2000,Junior Accountant
+Accounting,Charlie,Johnson,2011,2000,Junior Accountant
+Accounting,Charlie,Johnson,2012,2500,Accountant
+Accounting,Charlie,Johnson,2013,3200,Accountant
+Accounting,Charlie,Johnson,2014,3700,Senior Accountant
+Accounting,Charlie,Johnson,2015,4200,Senior Accountant
+IT,Jacob,King,2013,3400,Trainee
