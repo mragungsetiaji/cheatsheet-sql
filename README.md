@@ -1,1 +1,1 @@
-# cheatsheet-sql
+# Learn SQL
