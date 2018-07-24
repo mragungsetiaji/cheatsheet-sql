@@ -1,0 +1,11 @@
+ID,OWNER_ID,NAME,TYPE,YEAR_BORN
+1,1,Coco,parrot,2013
+2,1,Mango,parrot,2006
+3,null,Molly,dog,2008
+4,null,Daisy,dog,2007
+5,2,Oliver,cat,2010
+6,3,Tiger,cat,2011
+7,null,Max,dog,2013
+8,4,Bella,frog,2013
+9,5,Peanut,snake,2012
+10,6,Max,goldfish,2012

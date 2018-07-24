@@ -1,0 +1,16 @@
+ID,PURCHASE_ID,NAME,QUANTITY
+1,1,Rose,10
+2,1,Chrysanthemum,13
+3,2,Tulip,7
+4,2,Lily,8
+5,2,Narciss,15
+6,5,Chrysanthemum,20
+7,5,Rose,21
+8,6,Daffodil,3
+9,6,Iris,45
+10,7,Sunflower,11
+11,7,Violet,28
+12,7,Rose,30
+13,3,Tulip,2
+14,4,Rose,8
+15,4,Lily,13
